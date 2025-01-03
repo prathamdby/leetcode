@@ -6,10 +6,9 @@ class Solution {
         for (char ch : characters) {
             String p = prefix.toString() + Character.toString(ch);
 
-            for (String str : strs) {
+            for (String str : strs)
                 if (!str.startsWith(p))
                     return prefix.toString();
-            }
 
             prefix.append(ch);
         }

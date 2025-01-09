@@ -1,16 +1,21 @@
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        List<Integer> list = Arrays.stream(nums)
-                .boxed()
-                .collect(Collectors.toList());
+        int n = nums.length;
+        int left = 0;
+        int right = n - 1;
 
-        if (list.contains(target))
-            return list.indexOf(target);
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int num = nums[mid];
 
-        list.add(target);
+            if (num == target)
+                return mid;
+            else if (num > target)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
 
-        Collections.sort(list);
-
-        return list.indexOf(target);
+        return left;
     }
 }

@@ -3,28 +3,20 @@ class Solution {
         if (s.isEmpty()) return true;
         if (s.length() == 1) return false;
 
-        Stack<Character> op = new Stack<>();
+        char[] chStack = new char[s.length()];
+        int top = -1;
 
-        HashMap<Character, Character> brMap = new HashMap<>();
-        brMap.put(')', '(');
-        brMap.put(']', '[');
-        brMap.put('}', '{');
-
-        char[] chars = s.toCharArray();
-
-        for (char ch : chars) {
-            if (ch == '(' || ch == '[' || ch == '{')
-                op.push(ch);
-            else {
-                if (op.empty())
-                    return false;
-
-                char brCh = op.pop();
-                if (brCh != brMap.get(ch))
-                    return false;
-            }
+        for (char ch : s.toCharArray()) {
+            if (ch == '(')
+                chStack[++top] = ')';
+            else if (ch == '{')
+                chStack[++top] = '}';
+            else if (ch == '[')
+                chStack[++top] = ']';
+            else if (top == -1 || chStack[top--] != ch)
+                return false;
         }
 
-        return op.empty();
+        return top == -1;
     }
 }

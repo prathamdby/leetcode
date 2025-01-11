@@ -1,15 +1,27 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        for (int i = 1; i < nums.length; i++) {
-            int key = nums[i];
-            int j = i - 1;
+        if (nums.length <= 1) return nums;
 
-            while (j >= 0 && nums[j] > key) {
-                nums[j + 1] = nums[j];
-                j--;
-            }
+        int max = 0, min = 0;
+        for (int num : nums) {
+            max = Math.max(num, max);
+            min = Math.min(num, min);
+        }
 
-            nums[j + 1] = key;
+        int range = max - min + 1;
+        int[] count = new int[range];
+        for (int num : nums)
+            count[num - min]++;
+
+        int index = 0;
+        for (int i = 0; i < range; i++) {
+            int freq = count[i];
+
+            if (freq < 1) continue;
+
+            int value = i + min;
+            while (freq-- > 0)
+                nums[index++] = value;
         }
 
         return nums;

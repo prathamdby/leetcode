@@ -3,18 +3,16 @@ class Solution {
         if (s.isEmpty()) return 0;
         if (s.length() == 1) return 1;
 
-        HashSet<Character> set = new HashSet<>();
+        StringBuilder sb = new StringBuilder();
         int maxLen = 0;
-        int left = 0;
 
-        for (int right = 0; right < s.length(); right++) {
-            char ch = s.charAt(right);
+        for (char ch : s.toCharArray()) {
+            int index = sb.indexOf(Character.toString(ch));
+            if (index != -1)
+                sb.delete(0, index + 1);
 
-            while (set.contains(ch))
-                set.remove(s.charAt(left++));
-
-            set.add(ch);
-            maxLen = Math.max(maxLen, right - left + 1);
+            sb.append(ch);
+            maxLen = Math.max(maxLen, sb.length());
         }
 
         return maxLen;

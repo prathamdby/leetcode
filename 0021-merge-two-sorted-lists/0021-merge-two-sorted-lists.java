@@ -25,11 +25,8 @@ class Solution {
             pointer = pointer.next;
         }
 
-        if (list1 != null) {
-            pointer.next = list1;
-        } else {
-            pointer.next = list2;
-        }
+        if (list1 != null) pointer.next = list1;
+        else pointer.next = list2;
 
         return dummyHead.next;
     }

@@ -10,8 +10,8 @@ class Solution {
         for (String word : words) {
             int isConsistent = 1;
 
-            for (char character : word.toCharArray())
-                if (!allowedSet.contains(character)) {
+            for (int i = 0; i < word.length(); i++)
+                if (!allowedSet.contains(word.charAt(i))) {
                     isConsistent = 0;
                     break;
                 }

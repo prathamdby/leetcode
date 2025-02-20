@@ -13,11 +13,8 @@ class Solution {
                 right--;
 
             char temp = chars[left];
-            chars[left] = chars[right];
-            chars[right] = temp;
-
-            left++;
-            right--;
+            chars[left++] = chars[right];
+            chars[right--] = temp;
         }
 
         String res = new String(chars);

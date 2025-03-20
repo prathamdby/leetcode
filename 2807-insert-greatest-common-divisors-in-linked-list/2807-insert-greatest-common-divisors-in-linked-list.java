@@ -10,6 +10,8 @@
  */
 class Solution {
     public ListNode insertGreatestCommonDivisors(ListNode head) {
+        if (head == null && head.next == null) return head;
+
         ListNode slow = head;
         ListNode fast = head.next;
         while (fast != null) {
@@ -28,6 +30,13 @@ class Solution {
 
     private static int findGCD(int a, int b) {
         if (b == 0) return a;
-        return findGCD(b, a % b);
+
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
     }
 }
